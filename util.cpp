@@ -5,7 +5,18 @@
 
 #include "util.h"
 
-void read_input(char* filename, std::vector<Bridge>& bridges)
+void parse_command_line(int argc, char** argv, std::vector<Bridge>& bridges,
+        std::vector<int32_t>& send_order)
+{
+    parse_input_file(argv[1], bridges);
+
+    // Parse rest of line for ordering
+    for (auto i = 2; i < argc; ++i) {
+        send_order.push_back(std::stoi(std::string(argv[i])));
+    }
+}
+
+void parse_input_file(char* filename, std::vector<Bridge>& bridges)
 {
     std::ifstream file(filename);
     if (!file.is_open()) {
@@ -24,8 +35,6 @@ void read_input(char* filename, std::vector<Bridge>& bridges)
         std::move(elements.begin()+1, elements.end(), std::back_inserter(lans));
         bridges.push_back(Bridge(bridge_num, lans));
     }
-
-    file.close();
 }
 
 std::vector<std::string> split(const std::string str, const char delim)
