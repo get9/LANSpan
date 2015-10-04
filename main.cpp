@@ -1,8 +1,10 @@
 #include <iostream>
 #include <vector>
+#include <list>
 #include <cstdlib>
 
 #include "util.h"
+#include "bridge.h"
 
 int main(int argc, char** argv)
 {
@@ -13,9 +15,8 @@ int main(int argc, char** argv)
     }
 
     auto bridges = std::vector<Bridge>();
-    auto send_order = std::vector<int32_t>();
+    auto send_order = std::list<int32_t>();
     parse_command_line(argc, argv, bridges, send_order);
-    parse_input_file(argv[1], bridges);
 }
 
 

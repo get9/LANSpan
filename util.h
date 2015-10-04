@@ -5,9 +5,14 @@
 
 #include <vector>
 #include <string>
+#include <list>
 
-void read_input(const char* filename, std::vector<Bridge>& bridges);
+#include "bridge.h"
 
-std::vector<std::string> split(const std::string str, const char delim);
+void parse_command_line(int argc, char** argv, std::vector<Bridge>& bridges, std::list<int32_t>& send_order);
+
+void parse_input_file(const char* filename, std::vector<Bridge>& bridges);
+
+std::vector<std::string> split_space(const std::string str);
 
 #endif

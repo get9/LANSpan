@@ -1,12 +1,14 @@
 #include <vector>
+#include <list>
 #include <iostream>
+#include <fstream>
 #include <sstream>
 #include <string>
 
 #include "util.h"
 
 void parse_command_line(int argc, char** argv, std::vector<Bridge>& bridges,
-        std::vector<int32_t>& send_order)
+        std::list<int32_t>& send_order)
 {
     parse_input_file(argv[1], bridges);
 
@@ -27,7 +29,7 @@ void parse_input_file(char* filename, std::vector<Bridge>& bridges)
 
     // For every line in input file
     while (std::getline(file, line)) {
-        auto elements = split(line);
+        auto elements = split_space(line);
         int32_t bridge_num = std::stoi(elements[0]);
         auto lans = std::vector<std::string>();
 
@@ -37,12 +39,12 @@ void parse_input_file(char* filename, std::vector<Bridge>& bridges)
     }
 }
 
-std::vector<std::string> split(const std::string str, const char delim)
+std::vector<std::string> split_space(const std::string str)
 {
     auto v = std::vector<std::string>();
-    auto ss = std::stringstream(str);
+    std::stringstream ss(str);
     auto unit = std::string();
-    while (std::getline(ss, unit, delim)) {
+    while (std::getline(ss, unit)) {
         v.push_back(unit);
     }
     return v;
