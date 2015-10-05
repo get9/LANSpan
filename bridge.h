@@ -13,15 +13,26 @@ struct LanConfig {
     int32_t assumed_root;
     int32_t distance;
 
+    LanConfig() : sender_id(0), assumed_root(0), distance(-1) { }
+
     LanConfig(int32_t id) : sender_id(id), assumed_root(id), distance(-1) { }
+
+    friend std::ostream& operator<<(std::ostream& s, const LanConfig& c) {
+        return s << "(" << c.sender_id << ", " << c.assumed_root
+                 << ", " << c.distance << ")";
+    }
 };
 
 struct Link {
     bool is_active;
     LanConfig best_config;
 
-    Link(int32_t id) : is_active(false) {
+    Link(int32_t id) : is_active(true) {
         best_config = LanConfig(id);
+    }
+
+    friend std::ostream& operator<<(std::ostream& s, const Link& l) {
+        return s << l.best_config << (l.is_active ? " *" : " ");
     }
 };
 

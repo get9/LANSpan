@@ -13,8 +13,7 @@ std::vector<ConfigMessage> Bridge::broadcast() const
 {
     auto msgs = std::vector<ConfigMessage>();
     for (auto& l : links_) {
-        auto msg = ConfigMessage(l.first, l.second.best_config);
-        msgs.push_back(msg);
+        msgs.emplace_back(l.first, l.second.best_config);
     }
     return msgs;
 }
@@ -22,11 +21,24 @@ std::vector<ConfigMessage> Bridge::broadcast() const
 // TODO: Implement
 void Bridge::receive(ConfigMessage msg)
 {
-    // do stuff
+    // Check if new message contains better config than the one we already have
+    bool better = false;
+    auto config = links_[msg.receiver].best_config;
+    if (msg.config.assumed_root < config.assumed_root ||
+        (msg.config.assumed_root == config.assumed_root &&
+         msg.config.distance < config.distance) ||
+        (msg.config.assumed_root == config.assumed_root &&
+         msg.config.distance == config.distance &&
+         msg.config.sender_id < config.sender_id)) {
+        better = true;
+    }
 }
 
-// TODO: Implement
 std::ostream& operator<<(std::ostream& s, const Bridge& b)
 {
+    s << "id = " << b.id_ << std::endl;
+    for (auto& l : b.links_) {
+        s << "    " << l.first << " " << l.second << std::endl;
+    }
     return s;
 }

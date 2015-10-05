@@ -18,7 +18,7 @@ void parse_command_line(int argc, char** argv, std::vector<Bridge>& bridges,
     }
 }
 
-void parse_input_file(char* filename, std::vector<Bridge>& bridges)
+void parse_input_file(const char* filename, std::vector<Bridge>& bridges)
 {
     std::ifstream file(filename);
     if (!file.is_open()) {
@@ -39,12 +39,13 @@ void parse_input_file(char* filename, std::vector<Bridge>& bridges)
     }
 }
 
+// Splits {str} on any whitespace characters, returns as vector
 std::vector<std::string> split_space(const std::string str)
 {
     auto v = std::vector<std::string>();
     std::stringstream ss(str);
     auto unit = std::string();
-    while (std::getline(ss, unit)) {
+    while (ss >> unit) {
         v.push_back(unit);
     }
     return v;
