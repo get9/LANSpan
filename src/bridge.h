@@ -33,7 +33,7 @@ struct Link {
     }
 
     friend std::ostream& operator<<(std::ostream& s, const Link& l) {
-        return s << l.config << (l.is_active ? " *" : " ");
+        return s << l.config << (l.is_active ? "" : " [CLOSED]");
     }
 };
 
