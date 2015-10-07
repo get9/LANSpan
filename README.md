@@ -8,11 +8,8 @@ correct output for the given sample input file.
 
 ## Output notation
 The output displayed is comprised of the following:
-1. Sequence of actions (messages sends/receives) and appropriate actions taken
-by each bridge upon processing a message
-
-2. Output of the network state at the end of the sending sequence. The output
-is as follows:
+1. Sequence of actions (messages sends/receives) and appropriate actions taken by each bridge upon processing a message
+2. Output of the network state at the end of the sending sequence. The output is as follows:
 
 ```
   id = <Bridge ID>
@@ -39,9 +36,6 @@ any links. I'm not sure if this generalizes well to other sample inputs.
 ## Building and running the code
 The general steps to build and run the code are as follows:
 1. `cd /path/to/unzipped/directory`
-
 2. `cd src/`
-
 3. `make`
-
 4. `./myprogram <inputfile> <send order separated by spaces>
