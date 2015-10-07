@@ -1,7 +1,7 @@
 CPP = /usr/bin/c++
 CXXFLAGS = -c -Wall -Wpedantic -std=c++11
 RM = /bin/rm
-SOURCES = main.cpp util.cpp bridge.cpp
+SOURCES = main.cpp util.cpp bridge.cpp lancontroller.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 EXECUTABLE = myprogram
 

@@ -4,7 +4,9 @@
 #define _LANSPAN_LANCONTROLLER_H_
 
 #include <vector>
-#include <unordered_map>
+#include <map>
+#include <iostream>
+#include <list>
 
 #include "bridge.h"
 
@@ -16,11 +18,15 @@ public:
 
     void find_mst(std::list<int32_t> msg_send_order);
 
-    decltype(bridges_) bridges() const { return bridges_; }
+    std::vector<Bridge> bridges() const {
+        return bridges_;
+    }
+
+    friend std::ostream& operator<<(std::ostream& s, const LanController& l);
 
 private:
     std::vector<Bridge> bridges_;
-    std::unordered_map<std::string, std::vector<Bridge*>> bridges_for_lan_;
+    std::map<std::string, std::vector<Bridge*>> bridges_for_lan_;
 
 };
 

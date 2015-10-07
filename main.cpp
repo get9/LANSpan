@@ -5,6 +5,7 @@
 
 #include "util.h"
 #include "bridge.h"
+#include "lancontroller.h"
 
 int main(int argc, char** argv)
 {
@@ -17,9 +18,11 @@ int main(int argc, char** argv)
     auto bridges = std::vector<Bridge>();
     auto send_order = std::list<int32_t>();
     parse_command_line(argc, argv, bridges, send_order);
-    for (auto b : bridges) {
-        std::cout << b << std::endl;
-    }
+
+    // Run algorithm to find MST
+    LanController controller(bridges);
+    controller.find_mst(send_order);
+    std::cout << controller << std::endl;
 }
 
 
