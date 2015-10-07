@@ -40,4 +40,4 @@ The general steps to build and run the code are as follows:
 1. `cd /path/to/unzipped/directory`
 2. `cd src/`
 3. `make`
-4. `./myprogram <inputfile> <send order separated by spaces>
+4. `./myprogram <inputfile> <send order separated by spaces>`
